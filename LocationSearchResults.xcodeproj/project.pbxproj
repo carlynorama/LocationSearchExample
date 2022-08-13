@@ -7,11 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		DA68B1BA28A71E4B007BE140 /* PlacemarkReturnTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA68B1B928A71E4B007BE140 /* PlacemarkReturnTest.swift */; };
 		DA68B1BC28A721FF007BE140 /* LocationSearchService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA68B1BB28A721FF007BE140 /* LocationSearchService.swift */; };
-		DA68B1BE28A72A66007BE140 /* KeywordSearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA68B1BD28A72A66007BE140 /* KeywordSearchView.swift */; };
 		DAF107B428A715EB005DA02C /* LocationSearchResultsApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAF107B328A715EB005DA02C /* LocationSearchResultsApp.swift */; };
-		DAF107B628A715EB005DA02C /* SearchTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAF107B528A715EB005DA02C /* SearchTest.swift */; };
+		DAF107B628A715EB005DA02C /* SearchTestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAF107B528A715EB005DA02C /* SearchTestView.swift */; };
 		DAF107B828A715EE005DA02C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DAF107B728A715EE005DA02C /* Assets.xcassets */; };
 		DAF107BB28A715EE005DA02C /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DAF107BA28A715EE005DA02C /* Preview Assets.xcassets */; };
 		DAF107C528A715EE005DA02C /* LocationSearchResultsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAF107C428A715EE005DA02C /* LocationSearchResultsTests.swift */; };
@@ -37,12 +35,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		DA68B1B928A71E4B007BE140 /* PlacemarkReturnTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlacemarkReturnTest.swift; sourceTree = "<group>"; };
 		DA68B1BB28A721FF007BE140 /* LocationSearchService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationSearchService.swift; sourceTree = "<group>"; };
-		DA68B1BD28A72A66007BE140 /* KeywordSearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeywordSearchView.swift; sourceTree = "<group>"; };
 		DAF107B028A715EB005DA02C /* LocationSearchResults.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LocationSearchResults.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DAF107B328A715EB005DA02C /* LocationSearchResultsApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationSearchResultsApp.swift; sourceTree = "<group>"; };
-		DAF107B528A715EB005DA02C /* SearchTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTest.swift; sourceTree = "<group>"; };
+		DAF107B528A715EB005DA02C /* SearchTestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTestView.swift; sourceTree = "<group>"; };
 		DAF107B728A715EE005DA02C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DAF107BA28A715EE005DA02C /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		DAF107C028A715EE005DA02C /* LocationSearchResultsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LocationSearchResultsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -101,10 +97,8 @@
 			isa = PBXGroup;
 			children = (
 				DAF107B328A715EB005DA02C /* LocationSearchResultsApp.swift */,
-				DAF107B528A715EB005DA02C /* SearchTest.swift */,
+				DAF107B528A715EB005DA02C /* SearchTestView.swift */,
 				DA68B1BB28A721FF007BE140 /* LocationSearchService.swift */,
-				DA68B1B928A71E4B007BE140 /* PlacemarkReturnTest.swift */,
-				DA68B1BD28A72A66007BE140 /* KeywordSearchView.swift */,
 				DAF107B728A715EE005DA02C /* Assets.xcassets */,
 				DAF107B928A715EE005DA02C /* Preview Content */,
 			);
@@ -266,11 +260,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DAF107B628A715EB005DA02C /* SearchTest.swift in Sources */,
+				DAF107B628A715EB005DA02C /* SearchTestView.swift in Sources */,
 				DAF107B428A715EB005DA02C /* LocationSearchResultsApp.swift in Sources */,
-				DA68B1BE28A72A66007BE140 /* KeywordSearchView.swift in Sources */,
 				DA68B1BC28A721FF007BE140 /* LocationSearchService.swift in Sources */,
-				DA68B1BA28A71E4B007BE140 /* PlacemarkReturnTest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

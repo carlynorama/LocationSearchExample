@@ -12,7 +12,7 @@ struct LocationSearchResultsApp: App {
     var body: some Scene {
         WindowGroup {
             //PlacemarkReturnTest()
-            KeywordSearchView()
+            SearchTestView()
         }
     }
 }
