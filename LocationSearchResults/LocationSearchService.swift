@@ -8,9 +8,6 @@
 import Foundation
 import MapKit
 
-
-
-
 //TODO:https://developer.apple.com/documentation/mapkit/mklocalsearchcompleter
 
 public final class LocationSearchService:ObservableObject {
@@ -32,15 +29,13 @@ public final class LocationSearchService:ObservableObject {
         
         var locations:[MKMapItem] = []
         
-        let request = MKLocalPointsOfInterestRequest(center: region.center, radius: radius)
-        request.pointOfInterestFilter = MKPointOfInterestFilter(excluding: [.restaurant, .cafe])
-        let search = MKLocalSearch(request: request)
+        let searchRequest = MKLocalPointsOfInterestRequest(center: region.center, radius: radius)
+        searchRequest.pointOfInterestFilter = MKPointOfInterestFilter(excluding: [.restaurant, .cafe])
+        let search = MKLocalSearch(request: searchRequest)
         
         do {
             let response = try await search.start()
-            //print(response.mapItems)
             for item in response.mapItems {
-                //print( item.name! )
                 locations.append(item)
             }
         }
@@ -59,24 +54,23 @@ public final class LocationSearchService:ObservableObject {
     
     
     func keywordSearch(for searchString:String) async -> [MKMapItem] {
-        var results:[MKMapItem] = []
+        //Add region priority? searchRequest.region = yourMapView.region
+        
+        var locations:[MKMapItem] = []
         
         let searchRequest = MKLocalSearch.Request()
         searchRequest.naturalLanguageQuery = searchString
-        
-        //Add region priority? searchRequest.region = yourMapView.region
-        
         let search = MKLocalSearch(request: searchRequest)
         
         do {
             let response = try await search.start()
             for item in response.mapItems {
-                results.append(item)
+                locations.append(item)
             }
         } catch {
             print("LSS keywordSearch(): search failure \(error.localizedDescription)")
         }
         
-        return results
+        return locations
     }
 }
