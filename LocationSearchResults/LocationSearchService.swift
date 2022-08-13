@@ -73,4 +73,37 @@ public final class LocationSearchService:ObservableObject {
         
         return locations
     }
+    
+    public func runCoffeeSearch() {
+        Task { @MainActor in
+            async let result = coffeSearch()
+            resultItems = await result
+        }
+    }
+    
+    func coffeSearch() async -> [MKMapItem] {
+        
+        var locations:[MKMapItem] = []
+        
+        let searchRequest = MKLocalSearch.Request()
+        searchRequest.naturalLanguageQuery = "coffee"
+        
+        let search = MKLocalSearch(request: searchRequest)
+        
+        do {
+            let response = try await search.start()
+            for item in response.mapItems {
+                locations.append(item)
+//                if let name = item.name,
+//                   let location = item.placemark.location {
+//                    print("\(name): \(location.coordinate.latitude),\(location.coordinate.longitude)")
+//                }
+            }
+        } catch {
+            print("LSS coffeeSearch(): search failure \(error.localizedDescription)")
+        }
+        
+        return locations
+    }
+    
 }

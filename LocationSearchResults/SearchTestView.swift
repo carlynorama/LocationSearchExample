@@ -21,6 +21,10 @@ struct SearchTestView: View {
                     Button("Keyword") {
                         infoService.runKeywordSearch(for: searchTextField)
                     }
+                    Spacer()
+                    Button("Coffee") {
+                        infoService.runCoffeeSearch()
+                    }
                 }
                 List(infoService.resultItems, id:\.self) { item in
                     MapItemRow(item: item)
