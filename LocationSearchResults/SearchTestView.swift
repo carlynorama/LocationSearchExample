@@ -4,7 +4,7 @@ import MapKit
 struct SearchTestView: View {
     @StateObject var infoService = LocationSearchService()
     
-    @State var searchTextField = ""
+    @State var searchTextField = "New"
     
     let center = CLLocationCoordinate2D(latitude: 34.0536909, longitude: -118.242766)
     let radius = 100.0
@@ -14,18 +14,30 @@ struct SearchTestView: View {
                 Text("Search Tests").font(.largeTitle)
                 TextField("Search", text: $searchTextField)
                 HStack {
-                    Button("Nearby Results") {
+                    Button("Landmarks Nearby") {
                         infoService.runNearbyLocationSearch(center: center, radius: radius)
                     }
-                    Button("Keyword Results") {
+                    Spacer()
+                    Button("Keyword") {
                         infoService.runKeywordSearch(for: searchTextField)
                     }
                 }
                 List(infoService.resultItems, id:\.self) { item in
-                    Text("\(item.name ?? "") - \(item.placemark)")
+                    MapItemRow(item: item)
                 }
             }.padding(10)
         }
+}
+
+struct MapItemRow: View {
+    let item:MKMapItem
+    
+    var body: some View {
+        VStack {
+            Text("\(item.name ?? "No name")")
+            Text("placemark: \(item.placemark)").font(.caption)
+        }
+    }
 }
 
 struct SearchTestView_Previews: PreviewProvider {
