@@ -7,14 +7,22 @@
 
 import Foundation
 import MapKit
+import SwiftUI
 
-//TODO:https://developer.apple.com/documentation/mapkit/mklocalsearchcompleter
-
-public final class LocationSearchService:ObservableObject {
-    public init() {}
+public final class LocationSearchService:NSObject, ObservableObject {
+    
+    public override init() {
+        self.searchCompleter = MKLocalSearchCompleter()
+        super.init()
+        
+        searchCompleter.delegate = self
+    }
 
     @Published public var resultItems:[MKMapItem] = []
     
+    var searchCompleter:MKLocalSearchCompleter
+    @Published public var completionItems:[MKLocalSearchCompletion] = []
+
     
     public func runNearbyLocationSearch(center:CLLocationCoordinate2D, radius:Double) -> Void {
         Task { @MainActor in
@@ -54,12 +62,12 @@ public final class LocationSearchService:ObservableObject {
     
     
     func keywordSearch(for searchString:String) async -> [MKMapItem] {
-        //Add region priority? searchRequest.region = yourMapView.region
         
         var locations:[MKMapItem] = []
         
         let searchRequest = MKLocalSearch.Request()
         searchRequest.naturalLanguageQuery = searchString
+        searchRequest.region = MKCoordinateRegion(.world)
         let search = MKLocalSearch(request: searchRequest)
         
         do {
@@ -106,4 +114,67 @@ public final class LocationSearchService:ObservableObject {
         return locations
     }
     
+    
+    
+    
+    //use with debouncing text field.
+    public func completingSearch(with searchTerm:String) {
+        //searchCompleter is watching queryFragment itself.
+        searchCompleter.queryFragment = searchTerm
+    }
+    
+    public func runSuggestedItemSearch(for suggestedCompletion: MKLocalSearchCompletion) {
+        Task { @MainActor in
+            async let result = suggestedItemSearch(for: suggestedCompletion)
+            resultItems = await result
+        }
+    }
+
+    private func suggestedItemSearch(for suggestedCompletion: MKLocalSearchCompletion) async -> [MKMapItem] {
+        var locations:[MKMapItem] = []
+        
+        let searchRequest = MKLocalSearch.Request(completion: suggestedCompletion)
+        let search = MKLocalSearch(request: searchRequest)
+        do {
+            let response = try await search.start()
+            for item in response.mapItems {
+                locations.append(item)
+                if let name = item.name,
+                   let location = item.placemark.location {
+                    print("\(name): \(location.coordinate.latitude),\(location.coordinate.longitude)")
+                }
+            }
+        } catch {
+            print("LSS suggestedItemSearch(): search failure \(error.localizedDescription)")
+        }
+        return locations
+    }
+    
 }
+
+extension LocationSearchService: MKLocalSearchCompleterDelegate {
+    
+    public func completerDidUpdateResults(_ completer: MKLocalSearchCompleter) {
+        // Depending on what you're searching, you might need to filter differently or
+        // remove the filter altogether. Filtering for an empty Subtitle seems to filter
+        // out a lot of places and only shows cities and countries.
+        //print("success")
+        //self.searchResults = completer.results.filter({ $0.subtitle == "" })
+        //self.status = completer.results.isEmpty ? .noResults : .result
+        print("success")
+        dump(completer.results)
+        self.completionItems = completer.results
+    }
+
+    public func completer(_ completer: MKLocalSearchCompleter, didFailWithError error: Error) {
+        print("failed", error)
+        //self.status = .error(error.localizedDescription)
+    }
+}
+
+//func completerDidUpdateResult(_ completer: MKLocalSearchComleter) {
+//  print("succeeded")
+//  dump(completer.results)
+//
+//  let search = MKLocalSearch(request: .init(completion: completer.results[0]))
+//}

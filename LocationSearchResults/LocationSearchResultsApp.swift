@@ -11,8 +11,7 @@ import SwiftUI
 struct LocationSearchResultsApp: App {
     var body: some Scene {
         WindowGroup {
-            //PlacemarkReturnTest()
-            SearchTestView()
+            ContentView()
         }
     }
 }

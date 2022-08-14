@@ -2,7 +2,7 @@ import SwiftUI
 import MapKit
 
 struct SearchTestView: View {
-    @StateObject var infoService = LocationSearchService()
+    @EnvironmentObject var infoService:LocationSearchService
     
     @State var searchTextField = "New"
     
@@ -46,6 +46,6 @@ struct MapItemRow: View {
 
 struct SearchTestView_Previews: PreviewProvider {
     static var previews: some View {
-        SearchTestView()
+        SearchTestView().environmentObject(LocationSearchService())
     }
 }
