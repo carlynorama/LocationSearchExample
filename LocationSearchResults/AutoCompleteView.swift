@@ -19,15 +19,15 @@ struct AutoCompleteView: View {
                 DebouncingTextField("Search", text: $searchTextField, debounceDelay: 0.5)            .onChange(of: searchTextField) { text in
                     infoService.completingSearch(with: searchTextField)
                 }
-                HStack {
-                    Button("Keyword") {
-                        infoService.runKeywordSearch(for: searchTextField)
-                    }
-                    Spacer()
-                    Button("Coffee") {
-                        infoService.runCoffeeSearch()
-                    }
-                }
+//                HStack {
+//                    Button("Keyword") {
+//                        infoService.runKeywordSearch(for: searchTextField)
+//                    }
+//                    Spacer()
+//                    Button("Coffee") {
+//                        infoService.runCoffeeSearch()
+//                    }
+//                }
                 List(infoService.completionItems, id:\.self) { item in
                     CompletionItemRow(item: item).environmentObject(infoService)
                 }
@@ -42,13 +42,17 @@ struct AutoCompleteView: View {
         @EnvironmentObject var infoService:LocationSearchService
         let item:MKLocalSearchCompletion
         
+//        Has no effect on layout issues
+//        let charset = CharacterSet.alphanumerics.inverted
+//            .trimmingCharacters(in: charset)
+        
         var body: some View {
             HStack {
                 VStack {
                     Text("\(item.title)")
                     Text("\(item.subtitle)").font(.caption)
                 }
-                Button("Use") {
+                Button("") {
                     infoService.runSuggestedItemSearch(for: item)
                 }
             }
