@@ -12,13 +12,13 @@ struct ContentView: View {
     var body: some View {
         TabView {
             SearchTestView()
-                .badge(2)
+                //.badge(2)
                 .tabItem {
-                    Label("Received", systemImage: "tray.and.arrow.down.fill")
+                    Label("Search", systemImage: "tray.and.arrow.down.fill")
                 }
             AutoCompleteView()
                 .tabItem {
-                    Label("Sent", systemImage: "tray.and.arrow.up.fill")
+                    Label("Suggested Search", systemImage: "tray.and.arrow.up.fill")
                 }
         }.environmentObject(searchService)
     }

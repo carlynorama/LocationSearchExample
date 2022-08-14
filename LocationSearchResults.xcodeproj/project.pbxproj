@@ -7,8 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		DA5CEDCA28A84675006EADE9 /* Example.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA5CEDC928A84675006EADE9 /* Example.swift */; };
-		DA5CEDCC28A8533C006EADE9 /* Playground_Example.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA5CEDCB28A8533C006EADE9 /* Playground_Example.swift */; };
+		DA5CEDCA28A84675006EADE9 /* FoundExample.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA5CEDC928A84675006EADE9 /* FoundExample.swift */; };
+		DA5CEDCC28A8533C006EADE9 /* Playground_FoundExample.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA5CEDCB28A8533C006EADE9 /* Playground_FoundExample.swift */; };
 		DA5CEDCE28A85A4E006EADE9 /* DebouncingTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA5CEDCD28A85A4E006EADE9 /* DebouncingTextField.swift */; };
 		DA68B1BC28A721FF007BE140 /* LocationSearchService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA68B1BB28A721FF007BE140 /* LocationSearchService.swift */; };
 		DA6A616128A86384003EAD0B /* AutoCompleteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA6A616028A86384003EAD0B /* AutoCompleteView.swift */; };
@@ -40,8 +40,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		DA5CEDC928A84675006EADE9 /* Example.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Example.swift; sourceTree = "<group>"; };
-		DA5CEDCB28A8533C006EADE9 /* Playground_Example.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Playground_Example.swift; sourceTree = "<group>"; };
+		DA5CEDC928A84675006EADE9 /* FoundExample.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoundExample.swift; sourceTree = "<group>"; };
+		DA5CEDCB28A8533C006EADE9 /* Playground_FoundExample.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Playground_FoundExample.swift; sourceTree = "<group>"; };
 		DA5CEDCD28A85A4E006EADE9 /* DebouncingTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebouncingTextField.swift; sourceTree = "<group>"; };
 		DA68B1BB28A721FF007BE140 /* LocationSearchService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationSearchService.swift; sourceTree = "<group>"; };
 		DA6A616028A86384003EAD0B /* AutoCompleteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutoCompleteView.swift; sourceTree = "<group>"; };
@@ -112,8 +112,8 @@
 				DA6A616228A8639A003EAD0B /* ContentView.swift */,
 				DA5CEDCD28A85A4E006EADE9 /* DebouncingTextField.swift */,
 				DA68B1BB28A721FF007BE140 /* LocationSearchService.swift */,
-				DA5CEDC928A84675006EADE9 /* Example.swift */,
-				DA5CEDCB28A8533C006EADE9 /* Playground_Example.swift */,
+				DA5CEDC928A84675006EADE9 /* FoundExample.swift */,
+				DA5CEDCB28A8533C006EADE9 /* Playground_FoundExample.swift */,
 				DAF107B728A715EE005DA02C /* Assets.xcassets */,
 				DAF107B928A715EE005DA02C /* Preview Content */,
 			);
@@ -278,10 +278,10 @@
 				DA6A616128A86384003EAD0B /* AutoCompleteView.swift in Sources */,
 				DAF107B628A715EB005DA02C /* SearchTestView.swift in Sources */,
 				DA6A616328A8639A003EAD0B /* ContentView.swift in Sources */,
-				DA5CEDCC28A8533C006EADE9 /* Playground_Example.swift in Sources */,
+				DA5CEDCC28A8533C006EADE9 /* Playground_FoundExample.swift in Sources */,
 				DAF107B428A715EB005DA02C /* LocationSearchResultsApp.swift in Sources */,
 				DA5CEDCE28A85A4E006EADE9 /* DebouncingTextField.swift in Sources */,
-				DA5CEDCA28A84675006EADE9 /* Example.swift in Sources */,
+				DA5CEDCA28A84675006EADE9 /* FoundExample.swift in Sources */,
 				DA68B1BC28A721FF007BE140 /* LocationSearchService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
