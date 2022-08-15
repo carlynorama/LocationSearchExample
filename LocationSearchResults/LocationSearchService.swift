@@ -9,6 +9,12 @@ import Foundation
 import MapKit
 import SwiftUI
 
+extension MKLocalSearchCompletion:Identifiable {
+    public var id:String {
+        self.title+self.subtitle
+    }
+}
+
 public final class LocationSearchService:NSObject, ObservableObject {
     
     public override init() {
@@ -18,11 +24,30 @@ public final class LocationSearchService:NSObject, ObservableObject {
         searchCompleter.delegate = self
     }
 
-    @Published public var resultItems:[MKMapItem] = []
+    @Published public private(set) var resultItems:[MKMapItem] = []
     
     var searchCompleter:MKLocalSearchCompleter
-    @Published public var completionItems:[MKLocalSearchCompletion] = []
+    @Published public private(set) var suggestedItems:[MKLocalSearchCompletion] = []
+    
+    @Published public private(set) var recentSearches:[String] = []
 
+    
+    public func clearSuggestions() {
+        suggestedItems = []
+    }
+    
+    public func clearResults() {
+        resultItems = []
+    }
+    
+    public func clearRecentSearhes() {
+        recentSearches = []
+    }
+    
+    public func addToRecentSearches(_ string:String) {
+        recentSearches.append(string)
+    }
+    
     
     public func runNearbyLocationSearch(center:CLLocationCoordinate2D, radius:Double) -> Void {
         Task { @MainActor in
@@ -95,6 +120,8 @@ public final class LocationSearchService:NSObject, ObservableObject {
         
         let searchRequest = MKLocalSearch.Request()
         searchRequest.naturalLanguageQuery = "coffee"
+        let testRegion = searchRequest.region
+        print("LSS coffeeSearch region: \(testRegion)")
         
         let search = MKLocalSearch(request: searchRequest)
         
@@ -118,7 +145,7 @@ public final class LocationSearchService:NSObject, ObservableObject {
     
     
     //use with debouncing text field.
-    public func completingSearch(with searchTerm:String) {
+    public func fetchSuggestions(with searchTerm:String) {
         //searchCompleter is watching queryFragment itself.
         searchCompleter.queryFragment = searchTerm
     }
@@ -163,7 +190,7 @@ extension LocationSearchService: MKLocalSearchCompleterDelegate {
         //self.status = completer.results.isEmpty ? .noResults : .result
         print("success")
         dump(completer.results)
-        self.completionItems = completer.results
+        self.suggestedItems = completer.results
     }
 
     public func completer(_ completer: MKLocalSearchCompleter, didFailWithError error: Error) {

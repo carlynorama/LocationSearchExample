@@ -20,6 +20,10 @@ struct ContentView: View {
                 .tabItem {
                     Label("Suggested Search", systemImage: "tray.and.arrow.up.fill")
                 }
+            SearchableFieldView()
+                .tabItem {
+                    Label("Searchable", systemImage: "globe")
+                }
         }.environmentObject(searchService)
     }
 }
