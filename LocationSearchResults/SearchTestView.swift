@@ -33,16 +33,7 @@ struct SearchTestView: View {
         }
 }
 
-struct MapItemRow: View {
-    let item:MKMapItem
-    
-    var body: some View {
-        VStack {
-            Text("\(item.name ?? "No name")")
-            Text("placemark: \(item.placemark)").font(.caption)
-        }
-    }
-}
+
 
 struct SearchTestView_Previews: PreviewProvider {
     static var previews: some View {

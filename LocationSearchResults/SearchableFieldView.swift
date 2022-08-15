@@ -46,7 +46,7 @@ struct SearchableFieldView: View {
     }
 }
 
-struct LocationSearchField_Previews: PreviewProvider {
+struct SearchableFieldView_Previews: PreviewProvider {
     static var previews: some View {
         SearchableFieldView().environmentObject(LocationSearchService())
     }

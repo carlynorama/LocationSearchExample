@@ -41,26 +41,7 @@ struct AutoCompleteView: View {
     
 }
 
-struct CompletionItemRow: View {
-    @EnvironmentObject var infoService:LocationSearchService
-    let item:MKLocalSearchCompletion
-    
-//        Has no effect on layout issues
-//        let charset = CharacterSet.alphanumerics.inverted
-//            .trimmingCharacters(in: charset)
-    
-    var body: some View {
-        HStack {
-            VStack {
-                Text("\(item.title)")
-                Text("\(item.subtitle)").font(.caption)
-            }
-            Button("") {
-                infoService.runSuggestedItemSearch(for: item)
-            }
-        }
-    }
-}
+
 
 struct AutoCompleteView_Previews: PreviewProvider {
     static var previews: some View {
