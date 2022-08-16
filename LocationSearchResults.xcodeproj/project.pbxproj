@@ -54,6 +54,7 @@
 		DA6A616628AAFD89003EAD0B /* RowViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RowViews.swift; sourceTree = "<group>"; };
 		DA6A616828AAFE5C003EAD0B /* LocationSearchField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationSearchField.swift; sourceTree = "<group>"; };
 		DA6A616C28AB122B003EAD0B /* LocationSearchFieldExampleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationSearchFieldExampleView.swift; sourceTree = "<group>"; };
+		DAB1236B28AC09BC00749161 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = LocationSearchResults/README.md; sourceTree = "<group>"; };
 		DAF107B028A715EB005DA02C /* LocationSearchResults.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LocationSearchResults.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DAF107B328A715EB005DA02C /* LocationSearchResultsApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationSearchResultsApp.swift; sourceTree = "<group>"; };
 		DAF107B528A715EB005DA02C /* SearchTestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTestView.swift; sourceTree = "<group>"; };
@@ -94,6 +95,7 @@
 		DAF107A728A715EB005DA02C = {
 			isa = PBXGroup;
 			children = (
+				DAB1236B28AC09BC00749161 /* README.md */,
 				DAF107B228A715EB005DA02C /* LocationSearchResults */,
 				DAF107C328A715EE005DA02C /* LocationSearchResultsTests */,
 				DAF107CD28A715EE005DA02C /* LocationSearchResultsUITests */,
