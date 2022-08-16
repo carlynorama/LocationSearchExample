@@ -23,6 +23,10 @@ class TextFieldObserver : ObservableObject {
             //})
             //.store(in: &cancellables) //-> private var cancellables = Set<AnyCancellable>()
     }
+    
+    public func overrideText(_ string:String) {
+        searchText = string
+    }
 }
 
 
@@ -43,5 +47,9 @@ struct DebouncingTextField : View {
             .onReceive(textObserver.$debouncedText) { (val) in
                 debouncedText = val
             }
+    }
+    
+    public func overrideText(_ string:String) {
+        textObserver.overrideText(string)
     }
 }

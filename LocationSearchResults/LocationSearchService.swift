@@ -11,7 +11,7 @@ import SwiftUI
 
 extension MKLocalSearchCompletion:Identifiable {
     public var id:String {
-        self.title+self.subtitle
+        self.title+" "+self.subtitle
     }
 }
 

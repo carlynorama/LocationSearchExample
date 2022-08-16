@@ -6,38 +6,78 @@
 //
 
 import SwiftUI
+import MapKit
+
+
 
 struct LocationSearchField: View {
     @EnvironmentObject var searchService:LocationSearchService
     
-    @State var searchTextField = "New"
+    var promptText:String = "Search for a location"
+    //@Binding var debouncedText : String
+    @StateObject private var textObserver:TextFieldObserver = TextFieldObserver(delay: 0.2)
+    
+    @State var searchTextField = ""
+    @State var searching = true
+    
+    @FocusState private var searchIsFocused: Bool
+    
+    //TODO: Layout
+    let textfieldHeight = 25.0
+    let numberOfItems = 5  //based on space?
     
     var body: some View {
         VStack {
-            DebouncingTextField("Search", text: $searchTextField, debounceDelay: 0.5)            .onChange(of: searchTextField) { text in
-                searchService.fetchSuggestions(with: searchTextField)
+            TextField(promptText, text: $textObserver.searchText)
+                .focused($searchIsFocused)
+                .onReceive(textObserver.$debouncedText) { (val) in
+                    searchTextField = val
+                }
+                .onChange(of: $searchTextField.wrappedValue) { text in
+                if searching == true {
+                    searchService.fetchSuggestions(with: searchTextField)
+                }
+                searching = true
+                
             }.border(.gray)
+                .layoutPriority(1)
                 .overlay(alignment:.topLeading){
                     if searchService.suggestedItems.count > 0 {
                     ZStack {
-                        Rectangle().fill(.blue)
-                            .frame(minWidth: 100, minHeight: 100)
+                        //Rectangle().fill(.blue)
+                          //  .frame(minWidth: 100, minHeight: 100)
                         VStack {
-                            ForEach(searchService.suggestedItems.prefix(9), id:\.self) { item in
+                            ForEach(searchService.suggestedItems.prefix(numberOfItems), id:\.self) { item in
+                                Button(action: {
+                                   searching = false
+                                   runSearch(item)
+                                   
+                                }, label: {
                                 CompletionItemRow(item: item).environmentObject(searchService)
+                                })
                                 Divider()
                             }
                         }
+                    }.offset(y:textfieldHeight)
+                            .backgroundStyle(.thinMaterial)
                     }
-                }
             }
-//            Spacer()
-//            List(searchService.resultItems, id:\.self) { item in
-//                MapItemRow(item: item)
-//            }
+            Spacer()
+            List(searchService.resultItems, id:\.self) { item in
+                MapItemRow(item: item)
+            }
         }
+        
+
+    }
+    func runSearch(_ suggestion:MKLocalSearchCompletion) {
+        textObserver.overrideText(suggestion.id)
+        searchService.clearSuggestions()
+        searchService.runSuggestedItemSearch(for: suggestion)
+        searchService.clearSuggestions()
     }
     
+
     
 }
 
