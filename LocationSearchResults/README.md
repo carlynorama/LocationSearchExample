@@ -15,5 +15,11 @@ Searchable:
     
 Future Reference Async & Combine:
     - https://www.swiftbysundell.com/articles/async-sequences-streams-and-combine/
+    
+Layout: 
+    - https://stackoverflow.com/questions/67811506/padding-offset-or-position-in-swiftui
+    - https://thehappyprogrammer.com/custom-textfield-in-swiftui
+    - https://www.hackingwithswift.com/quick-start/swiftui/how-to-change-the-order-of-view-layering-using-z-index
+    - https://swiftwithmajid.com/2020/03/11/alignment-guides-in-swiftui/
 
 
