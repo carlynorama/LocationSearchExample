@@ -44,28 +44,9 @@ struct LocationSearchField: View {
                     
             .layoutPriority(1)
                 .overlay(alignment:.topLeading){
-                    if searchService.suggestedItems.count > 0 {
-                    ZStack {
-                        //Rectangle().fill(.blue)
-                          //  .frame(minWidth: 100, minHeight: 100)
-                        VStack {
-                            ForEach(searchService.suggestedItems.prefix(numberOfItems), id:\.self) { item in
-                                Button(action: {
-                                   searching = false
-                                   runSearch(item)
-                                   
-                                }, label: {
-                                CompletionItemRow(item: item).environmentObject(searchService)
-                                })
-                                Divider()
-                            }
-                        }
-                    }
-                    
-                    .offset(y:textfieldHeight)
-                            .backgroundStyle(.thinMaterial)
-                    }
+                   suggestionsOverlay.backgroundStyle(.regularMaterial)
             }.zIndex(3)
+                
             Spacer()
             List(searchService.resultItems, id:\.self) { item in
                 MapItemRow(item: item)
@@ -81,6 +62,30 @@ struct LocationSearchField: View {
         searchService.clearSuggestions()
     }
     
+    @ViewBuilder private var suggestionsOverlay: some View {
+        if searchService.suggestedItems.count > 0 {
+        ZStack {
+            //Rectangle().fill(.blue)
+              //  .frame(minWidth: 100, minHeight: 100)
+            Rectangle().foregroundStyle(.ultraThinMaterial)
+            VStack {
+                ForEach(searchService.suggestedItems.prefix(numberOfItems), id:\.self) { item in
+                    Button(action: {
+                       searching = false
+                       runSearch(item)
+                       
+                    }, label: {
+                    CompletionItemRow(item: item).environmentObject(searchService)
+                    })
+                    Divider()
+                }
+            }
+        }
+        
+        .offset(y:textfieldHeight)
+                
+        }
+    }
 
     
 }
