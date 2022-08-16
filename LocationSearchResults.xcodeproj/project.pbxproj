@@ -16,7 +16,6 @@
 		DA6A616528AADC8D003EAD0B /* SearchableFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA6A616428AADC8D003EAD0B /* SearchableFieldView.swift */; };
 		DA6A616728AAFD89003EAD0B /* RowViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA6A616628AAFD89003EAD0B /* RowViews.swift */; };
 		DA6A616928AAFE5C003EAD0B /* LocationSearchField.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA6A616828AAFE5C003EAD0B /* LocationSearchField.swift */; };
-		DA6A616B28AB0199003EAD0B /* ExampleSuggestionText.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA6A616A28AB0199003EAD0B /* ExampleSuggestionText.swift */; };
 		DA6A616D28AB122C003EAD0B /* LocationSearchFieldExampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA6A616C28AB122B003EAD0B /* LocationSearchFieldExampleView.swift */; };
 		DAF107B428A715EB005DA02C /* LocationSearchResultsApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAF107B328A715EB005DA02C /* LocationSearchResultsApp.swift */; };
 		DAF107B628A715EB005DA02C /* SearchTestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAF107B528A715EB005DA02C /* SearchTestView.swift */; };
@@ -54,7 +53,6 @@
 		DA6A616428AADC8D003EAD0B /* SearchableFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchableFieldView.swift; sourceTree = "<group>"; };
 		DA6A616628AAFD89003EAD0B /* RowViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RowViews.swift; sourceTree = "<group>"; };
 		DA6A616828AAFE5C003EAD0B /* LocationSearchField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationSearchField.swift; sourceTree = "<group>"; };
-		DA6A616A28AB0199003EAD0B /* ExampleSuggestionText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleSuggestionText.swift; sourceTree = "<group>"; };
 		DA6A616C28AB122B003EAD0B /* LocationSearchFieldExampleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationSearchFieldExampleView.swift; sourceTree = "<group>"; };
 		DAF107B028A715EB005DA02C /* LocationSearchResults.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LocationSearchResults.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DAF107B328A715EB005DA02C /* LocationSearchResultsApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationSearchResultsApp.swift; sourceTree = "<group>"; };
@@ -124,7 +122,6 @@
 				DA5CEDCD28A85A4E006EADE9 /* DebouncingTextField.swift */,
 				DA6A616828AAFE5C003EAD0B /* LocationSearchField.swift */,
 				DA6A616C28AB122B003EAD0B /* LocationSearchFieldExampleView.swift */,
-				DA6A616A28AB0199003EAD0B /* ExampleSuggestionText.swift */,
 				DA6A616428AADC8D003EAD0B /* SearchableFieldView.swift */,
 				DA68B1BB28A721FF007BE140 /* LocationSearchService.swift */,
 				DA5CEDC928A84675006EADE9 /* FoundExample.swift */,
@@ -298,7 +295,6 @@
 				DA5CEDCC28A8533C006EADE9 /* Playground_FoundExample.swift in Sources */,
 				DA6A616728AAFD89003EAD0B /* RowViews.swift in Sources */,
 				DAF107B428A715EB005DA02C /* LocationSearchResultsApp.swift in Sources */,
-				DA6A616B28AB0199003EAD0B /* ExampleSuggestionText.swift in Sources */,
 				DA5CEDCE28A85A4E006EADE9 /* DebouncingTextField.swift in Sources */,
 				DA5CEDCA28A84675006EADE9 /* FoundExample.swift in Sources */,
 				DA68B1BC28A721FF007BE140 /* LocationSearchService.swift in Sources */,
