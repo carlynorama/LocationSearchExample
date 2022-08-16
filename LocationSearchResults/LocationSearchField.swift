@@ -28,19 +28,21 @@ struct LocationSearchField: View {
     
     var body: some View {
         VStack {
-            TextField(promptText, text: $textObserver.searchText)
-                .focused($searchIsFocused)
-                .onReceive(textObserver.$debouncedText) { (val) in
-                    searchTextField = val
-                }
-                .onChange(of: $searchTextField.wrappedValue) { text in
-                if searching == true {
-                    searchService.fetchSuggestions(with: searchTextField)
-                }
-                searching = true
-                
-            }.border(.gray)
-                .layoutPriority(1)
+        
+                TextField(promptText, text: $textObserver.searchText)
+                    .focused($searchIsFocused)
+                    .onReceive(textObserver.$debouncedText) { (val) in
+                        searchTextField = val
+                    }
+                    .onChange(of: $searchTextField.wrappedValue) { text in
+                        if searching == true {
+                            searchService.fetchSuggestions(with: searchTextField)
+                        }
+                        searching = true
+                        
+                    }.border(.gray)
+                    
+            .layoutPriority(1)
                 .overlay(alignment:.topLeading){
                     if searchService.suggestedItems.count > 0 {
                     ZStack {
@@ -58,10 +60,12 @@ struct LocationSearchField: View {
                                 Divider()
                             }
                         }
-                    }.offset(y:textfieldHeight)
+                    }
+                    
+                    .offset(y:textfieldHeight)
                             .backgroundStyle(.thinMaterial)
                     }
-            }
+            }.zIndex(3)
             Spacer()
             List(searchService.resultItems, id:\.self) { item in
                 MapItemRow(item: item)
