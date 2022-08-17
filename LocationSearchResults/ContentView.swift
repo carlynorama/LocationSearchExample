@@ -9,17 +9,19 @@ import SwiftUI
 
 struct ContentView: View {
     @StateObject var searchService = LocationSearchService()
+
     var body: some View {
         TabView {
+            LocationSearchFieldExampleView()
+                .tabItem {
+                    Label("Suggested Search", systemImage: "tray.and.arrow.up.fill")
+                }
             SearchTestView()
                 //.badge(2)
                 .tabItem {
                     Label("Search", systemImage: "tray.and.arrow.down.fill")
                 }
-            AutoCompleteView()
-                .tabItem {
-                    Label("Suggested Search", systemImage: "tray.and.arrow.up.fill")
-                }
+
             SearchableFieldView()
                 .tabItem {
                     Label("Searchable", systemImage: "globe")

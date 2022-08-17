@@ -18,7 +18,8 @@ struct LocationSearchField: View {
     @StateObject private var textObserver:TextFieldObserver = TextFieldObserver(delay: 0.2)
     
     @State var searchTextField = ""
-    @State var searching = true
+    @State var shouldSuggest = true
+    @State var showSuggestions = false
     
     @FocusState private var searchIsFocused: Bool
     
@@ -38,24 +39,39 @@ struct LocationSearchField: View {
                     searchTextField = val
                 }
                 .onChange(of: $searchTextField.wrappedValue) { text in
-                    if searching == true {
+                    if shouldSuggest == true {
                         searchService.fetchSuggestions(with: searchTextField)
                     }
-                    searching = true
-                    
+                    shouldSuggest = true
+                
+                    if searchTextField.isEmpty {
+                        searchService.clearSuggestions()
+                    }
                 }.layoutPriority(1)
+            
                 .overlay(alignment:.bottom){
-                    Group {
-                        suggestionsOverlay
-                            .modifier(DropDownBackgroundModifier())
-                            
+                    ZStack {
+                        if showSuggestions {
+                            suggestionsOverlay
+                                .modifier(DropDownBackgroundModifier())
+                                .transition(.scale(scale: 0, anchor: .topLeading))
+                        }
                     }.alignmentGuide(.bottom) { $0[VerticalAlignment.top] }
+                        
                 }
                 
        
         }.zIndex(3)
-            
-        
+            .animation(menuAnimation, value: searchService.suggestedItems.count > 0)
+            .onChange(of: searchService.suggestedItems.count) {newValue in
+                withAnimation {
+                    if newValue > 0 {
+                        showSuggestions = true
+                    } else {
+                        showSuggestions = false
+                    }
+                }
+            }
 
     }
     func runSearch(_ suggestion:MKLocalSearchCompletion) {
@@ -66,28 +82,27 @@ struct LocationSearchField: View {
     }
     
     @ViewBuilder private var suggestionsOverlay: some View {
-        if searchService.suggestedItems.count > 0 {
-        ZStack {
-            //Rectangle().fill(.blue)
-              //  .frame(minWidth: 100, minHeight: 100)
-            
             VStack {
                 ForEach(searchService.suggestedItems.prefix(numberOfItems), id:\.self) { item in
-                    Button(action: {
-                       searching = false
-                       runSearch(item)
-                       
-                    }, label: {
-                    CompletionItemRow(item: item).environmentObject(searchService)
-                    })
-                    Divider()
-                }
+
+                        Button(action: {
+                            shouldSuggest = false
+                            runSearch(item)
+
+                        }, label: {
+                            CompletionItemRow(item: item).environmentObject(searchService)
+                        })
+                        Divider()
+                    }
+
             }
-        }
-        
-        //.offset(y:textfieldHeight)
-                
-        }
+    }
+    
+    //Note the animation only worked on the rectangle when it was in teh ZStack, not in the background
+    //It does not appear to work on the VStack at all.
+    // .scaleEffect(x: 1, y:showSuggestions ? 1 : 0, anchor: .top)
+    var menuAnimation: Animation {
+        Animation.easeIn(duration: 1.3)
     }
     
     enum StyleConstants {
@@ -96,7 +111,7 @@ struct LocationSearchField: View {
     }
     
     struct DropDownBackgroundModifier: ViewModifier {
-
+        
         func body(content: Content) -> some View {
             content
                 .background(Rectangle()
@@ -105,11 +120,10 @@ struct LocationSearchField: View {
                     //.foregroundStyle(.ultraThinMaterial)
                 )
                 .padding(EdgeInsets(top: 0, leading: StyleConstants.inset, bottom: 0, trailing: StyleConstants.inset))
+               
                 
         }
     }
-    
-    //Rectangle().modifier(DropDownBackgroundModifier())
     
     struct LocationSearchTextFieldStyle: TextFieldStyle {
         func _body(configuration: TextField<_Label>) -> some View {

@@ -23,5 +23,6 @@ Layout:
     - https://www.hackingwithswift.com/quick-start/swiftui/how-to-change-the-order-of-view-layering-using-z-index
     - https://swiftwithmajid.com/2020/03/11/alignment-guides-in-swiftui/
     - https://blckbirds.com/post/how-to-create-a-search-bar-with-swiftui/
+    - https://stackoverflow.com/questions/57565371/add-animations-to-foreach-loop-elements-swiftui
 
 
