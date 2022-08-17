@@ -22,36 +22,39 @@ struct LocationSearchField: View {
     
     @FocusState private var searchIsFocused: Bool
     
+    
+    
     //TODO: Layout
-    let textfieldHeight = 25.0
-    let numberOfItems = 5  //based on space?
+    //Custom alignment guide that can swap it from a drop down to a pop up
+    let numberOfItems = 5  //based on space? preference in init?
     
     var body: some View {
-        VStack {
-        
-                TextField(promptText, text: $textObserver.searchText)
-                    .focused($searchIsFocused)
-                    .onReceive(textObserver.$debouncedText) { (val) in
-                        searchTextField = val
+        HStack {
+            Image(systemName: "location.magnifyingglass").foregroundColor(.secondary)
+            TextField(promptText, text: $textObserver.searchText)
+                .textFieldStyle(LocationSearchTextFieldStyle())
+                .focused($searchIsFocused)
+                .onReceive(textObserver.$debouncedText) { (val) in
+                    searchTextField = val
+                }
+                .onChange(of: $searchTextField.wrappedValue) { text in
+                    if searching == true {
+                        searchService.fetchSuggestions(with: searchTextField)
                     }
-                    .onChange(of: $searchTextField.wrappedValue) { text in
-                        if searching == true {
-                            searchService.fetchSuggestions(with: searchTextField)
-                        }
-                        searching = true
-                        
-                    }.border(.gray)
+                    searching = true
                     
-            .layoutPriority(1)
-                .overlay(alignment:.topLeading){
-                   suggestionsOverlay.backgroundStyle(.regularMaterial)
-            }.zIndex(3)
+                }.layoutPriority(1)
+                .overlay(alignment:.bottom){
+                    Group {
+                        suggestionsOverlay
+                            .modifier(DropDownBackgroundModifier())
+                            
+                    }.alignmentGuide(.bottom) { $0[VerticalAlignment.top] }
+                }
                 
-            Spacer()
-            List(searchService.resultItems, id:\.self) { item in
-                MapItemRow(item: item)
-            }
-        }
+       
+        }.zIndex(3)
+            
         
 
     }
@@ -67,7 +70,7 @@ struct LocationSearchField: View {
         ZStack {
             //Rectangle().fill(.blue)
               //  .frame(minWidth: 100, minHeight: 100)
-            Rectangle().foregroundStyle(.ultraThinMaterial)
+            
             VStack {
                 ForEach(searchService.suggestedItems.prefix(numberOfItems), id:\.self) { item in
                     Button(action: {
@@ -82,13 +85,42 @@ struct LocationSearchField: View {
             }
         }
         
-        .offset(y:textfieldHeight)
+        //.offset(y:textfieldHeight)
                 
         }
     }
-
     
+    enum StyleConstants {
+        static let inset = 5.0
+        static let menuBackgroundOpacity = 0.5
+    }
+    
+    struct DropDownBackgroundModifier: ViewModifier {
+
+        func body(content: Content) -> some View {
+            content
+                .background(Rectangle()
+                    .fill(Color(UIColor.systemGray6))
+                    .opacity(StyleConstants.menuBackgroundOpacity)
+                    //.foregroundStyle(.ultraThinMaterial)
+                )
+                .padding(EdgeInsets(top: 0, leading: StyleConstants.inset, bottom: 0, trailing: StyleConstants.inset))
+                
+        }
+    }
+    
+    //Rectangle().modifier(DropDownBackgroundModifier())
+    
+    struct LocationSearchTextFieldStyle: TextFieldStyle {
+        func _body(configuration: TextField<_Label>) -> some View {
+            configuration
+                .padding(StyleConstants.inset)
+                .background(RoundedRectangle(cornerRadius: StyleConstants.inset).fill(Color(UIColor.systemGray6)))
+        }
+    }
 }
+
+
 
 struct LocationSearchField_Previews: PreviewProvider {
     static var previews: some View {
