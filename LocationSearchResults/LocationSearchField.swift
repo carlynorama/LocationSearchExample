@@ -19,7 +19,7 @@ struct LocationSearchField: View {
     
     @State var searchTextField = ""
     @State var shouldSuggest = true
-    @State var showSuggestions = false
+    //@State var showSuggestions = false
     
     @FocusState private var searchIsFocused: Bool
     
@@ -47,31 +47,40 @@ struct LocationSearchField: View {
                     if searchTextField.isEmpty {
                         searchService.clearSuggestions()
                     }
+
                 }.layoutPriority(1)
             
                 .overlay(alignment:.bottom){
                     ZStack {
-                        if showSuggestions {
+                       // if showSuggestions {
                             suggestionsOverlay
                                 .modifier(DropDownBackgroundModifier())
-                                .transition(.scale(scale: 0, anchor: .topLeading))
-                        }
+                                
+                                //.transition(.scale(scale: 0, anchor: .topLeading))
+                            //.transition(clipTransition)
+                        //.scaleEffect(x: 1, y:showSuggestions ? 1 : 0, anchor: .top)
+                            //.animation(menuAnimation, value: showSuggestions)
+                       // }
                     }.alignmentGuide(.bottom) { $0[VerticalAlignment.top] }
-                        
+                      //  .scaleEffect(x: 1, y:showSuggestions ? 1 : 0)
                 }
                 
        
         }.zIndex(3)
-            .animation(menuAnimation, value: searchService.suggestedItems.count > 0)
-            .onChange(of: searchService.suggestedItems.count) {newValue in
-                withAnimation {
-                    if newValue > 0 {
-                        showSuggestions = true
-                    } else {
-                        showSuggestions = false
-                    }
-                }
-            }
+//            .animation(menuAnimation, value: showSuggestions)
+//            .onChange(of: searchService.suggestedItems.count) { newValue in
+//
+//                if newValue > 0 {
+//                        withAnimation {
+//                            showSuggestions = true
+//                        }
+//                    } else {
+//                        withAnimation {
+//                            showSuggestions = false
+//                        }
+//                    }
+//
+//            }
 
     }
     func runSearch(_ suggestion:MKLocalSearchCompletion) {
@@ -82,28 +91,63 @@ struct LocationSearchField: View {
     }
     
     @ViewBuilder private var suggestionsOverlay: some View {
-            VStack {
-                ForEach(searchService.suggestedItems.prefix(numberOfItems), id:\.self) { item in
-
-                        Button(action: {
-                            shouldSuggest = false
-                            runSearch(item)
-
-                        }, label: {
-                            CompletionItemRow(item: item).environmentObject(searchService)
-                        })
-                        Divider()
-                    }
-
+        VStack(alignment: .leading) {
+            ForEach(searchService.suggestedItems.prefix(numberOfItems), id:\.self) { item in
+            
+                    Button(action: {
+                        shouldSuggest = false
+                        runSearch(item)
+                        
+                    }, label: {
+                        SuggestionItemRow(item: item).environmentObject(searchService)
+                    })
+                    Divider()
+                }
+            
             }
+    }
+    
+    struct SuggestionItemRow: View {
+        @EnvironmentObject var infoService:LocationSearchService
+        let item:MKLocalSearchCompletion
+        
+    //        Has no effect on layout issues
+    //        let charset = CharacterSet.alphanumerics.inverted
+    //            .trimmingCharacters(in: charset)
+        
+        var body: some View {
+        
+                VStack(alignment: .leading) {
+                    Text("\(item.title)")
+                    Text("\(item.subtitle)").font(.caption)
+                }
+        }
     }
     
     //Note the animation only worked on the rectangle when it was in teh ZStack, not in the background
     //It does not appear to work on the VStack at all.
     // .scaleEffect(x: 1, y:showSuggestions ? 1 : 0, anchor: .top)
-    var menuAnimation: Animation {
-        Animation.easeIn(duration: 1.3)
-    }
+//    var menuAnimation: Animation {
+//        Animation.easeInOut(duration: 4)
+//    }
+//    
+//    struct ClipEffect: ViewModifier {
+//        var value: CGFloat
+//
+//        func body(content: Content) -> some View {
+//            content
+//                .clipShape(RoundedRectangle(cornerRadius: 100*(1-value)).scale(value))
+//        }
+//    }
+//
+//
+//        var clipTransition: AnyTransition {
+//            .modifier(
+//                active: ClipEffect(value: 0),
+//                identity: ClipEffect(value: 1)
+//            )
+//        }
+    
     
     enum StyleConstants {
         static let inset = 5.0
@@ -119,6 +163,7 @@ struct LocationSearchField: View {
                     .opacity(StyleConstants.menuBackgroundOpacity)
                     //.foregroundStyle(.ultraThinMaterial)
                 )
+                .transition(.opacity)
                 .padding(EdgeInsets(top: 0, leading: StyleConstants.inset, bottom: 0, trailing: StyleConstants.inset))
                
                 
