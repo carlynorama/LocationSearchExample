@@ -151,10 +151,13 @@ public final class LocationSearchService:NSObject, ObservableObject {
     }
     
     public func runSuggestedItemSearch(for suggestedCompletion: MKLocalSearchCompletion) {
+        print("doing the search")
         Task { @MainActor in
             async let result = suggestedItemSearch(for: suggestedCompletion)
             resultItems = await result
+            print("Found \(resultItems.count) items")
         }
+        
     }
 
     private func suggestedItemSearch(for suggestedCompletion: MKLocalSearchCompletion) async -> [MKMapItem] {

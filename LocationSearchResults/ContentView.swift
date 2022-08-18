@@ -12,14 +12,18 @@ struct ContentView: View {
 
     var body: some View {
         TabView {
+            LocationPickerExample()
+                .tabItem {
+                    Label("Location Picker", systemImage: "globe")
+                }
             LocationSearchFieldExampleView()
                 .tabItem {
-                    Label("Suggested Search", systemImage: "tray.and.arrow.up.fill")
+                    Label("Suggested Search", systemImage: "globe")
                 }
             SearchTestView()
                 //.badge(2)
                 .tabItem {
-                    Label("Search", systemImage: "tray.and.arrow.down.fill")
+                    Label("Search", systemImage: "globe")
                 }
 
             SearchableFieldView()

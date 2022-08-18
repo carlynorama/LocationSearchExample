@@ -16,6 +16,7 @@
 		DA6A616928AAFE5C003EAD0B /* LocationSearchField.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA6A616828AAFE5C003EAD0B /* LocationSearchField.swift */; };
 		DA6A616D28AB122C003EAD0B /* LocationSearchFieldExampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA6A616C28AB122B003EAD0B /* LocationSearchFieldExampleView.swift */; };
 		DAB1236D28AC312A00749161 /* AlignmentTestsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAB1236C28AC312A00749161 /* AlignmentTestsView.swift */; };
+		DAB123B228AEE12700749161 /* LocationPickerExample.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAB123B128AEE12700749161 /* LocationPickerExample.swift */; };
 		DAF107B428A715EB005DA02C /* LocationSearchResultsApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAF107B328A715EB005DA02C /* LocationSearchResultsApp.swift */; };
 		DAF107B628A715EB005DA02C /* SearchTestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAF107B528A715EB005DA02C /* SearchTestView.swift */; };
 		DAF107B828A715EE005DA02C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DAF107B728A715EE005DA02C /* Assets.xcassets */; };
@@ -53,6 +54,7 @@
 		DA6A616C28AB122B003EAD0B /* LocationSearchFieldExampleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationSearchFieldExampleView.swift; sourceTree = "<group>"; };
 		DAB1236B28AC09BC00749161 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = LocationSearchResults/README.md; sourceTree = "<group>"; };
 		DAB1236C28AC312A00749161 /* AlignmentTestsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlignmentTestsView.swift; sourceTree = "<group>"; };
+		DAB123B128AEE12700749161 /* LocationPickerExample.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationPickerExample.swift; sourceTree = "<group>"; };
 		DAF107B028A715EB005DA02C /* LocationSearchResults.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LocationSearchResults.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DAF107B328A715EB005DA02C /* LocationSearchResultsApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationSearchResultsApp.swift; sourceTree = "<group>"; };
 		DAF107B528A715EB005DA02C /* SearchTestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTestView.swift; sourceTree = "<group>"; };
@@ -120,6 +122,7 @@
 				DA6A616628AAFD89003EAD0B /* RowViews.swift */,
 				DA6A616228A8639A003EAD0B /* ContentView.swift */,
 				DA5CEDCD28A85A4E006EADE9 /* DebouncingTextField.swift */,
+				DAB123B128AEE12700749161 /* LocationPickerExample.swift */,
 				DA6A616828AAFE5C003EAD0B /* LocationSearchField.swift */,
 				DAB1236C28AC312A00749161 /* AlignmentTestsView.swift */,
 				DA6A616C28AB122B003EAD0B /* LocationSearchFieldExampleView.swift */,
@@ -291,6 +294,7 @@
 				DA6A616328A8639A003EAD0B /* ContentView.swift in Sources */,
 				DA6A616528AADC8D003EAD0B /* SearchableFieldView.swift in Sources */,
 				DAB1236D28AC312A00749161 /* AlignmentTestsView.swift in Sources */,
+				DAB123B228AEE12700749161 /* LocationPickerExample.swift in Sources */,
 				DA6A616D28AB122C003EAD0B /* LocationSearchFieldExampleView.swift in Sources */,
 				DA6A616728AAFD89003EAD0B /* RowViews.swift in Sources */,
 				DAF107B428A715EB005DA02C /* LocationSearchResultsApp.swift in Sources */,
