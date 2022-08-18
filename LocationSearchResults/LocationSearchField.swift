@@ -19,7 +19,7 @@ struct LocationSearchField: View {
     
     @State var searchTextField = ""
     @State var shouldSuggest = true
-    //@State var showSuggestions = false
+    @State var showSuggestions = false
     
     @FocusState private var searchIsFocused: Bool
     
@@ -30,6 +30,15 @@ struct LocationSearchField: View {
     let numberOfItems = 5  //based on space? preference in init?
     
     var body: some View {
+//        VStack {
+//            Button("Toggle Dropdown") {
+//                withAnimation {
+//                    showSuggestions.toggle()
+//                }
+//            }
+//            .buttonStyle(.borderedProminent)
+//            .padding(5)
+//        }
         HStack {
             Image(systemName: "location.magnifyingglass").foregroundColor(.secondary)
             TextField(promptText, text: $textObserver.searchText)
@@ -43,46 +52,42 @@ struct LocationSearchField: View {
                         searchService.fetchSuggestions(with: searchTextField)
                     }
                     shouldSuggest = true
-                
+                    
                     if searchTextField.isEmpty {
+                        withAnimation {
+                            showSuggestions = false
+                        }
                         searchService.clearSuggestions()
+                        
                     }
-
+                    
                 }.layoutPriority(1)
             
                 .overlay(alignment:.bottom){
                     ZStack {
-                       // if showSuggestions {
-                            suggestionsOverlay
-                                .modifier(DropDownBackgroundModifier())
-                                
-                                //.transition(.scale(scale: 0, anchor: .topLeading))
-                            //.transition(clipTransition)
-                        //.scaleEffect(x: 1, y:showSuggestions ? 1 : 0, anchor: .top)
-                            //.animation(menuAnimation, value: showSuggestions)
-                       // }
+                        if showSuggestions {
+                            ZStack {
+                                suggestionsList.modifier(DropDownBackgroundModifier())
+                            }.transition(menuTransition)
+                        }
                     }.alignmentGuide(.bottom) { $0[VerticalAlignment.top] }
-                      //  .scaleEffect(x: 1, y:showSuggestions ? 1 : 0)
+                    
                 }
-                
-       
-        }.zIndex(3)
-//            .animation(menuAnimation, value: showSuggestions)
-//            .onChange(of: searchService.suggestedItems.count) { newValue in
-//
-//                if newValue > 0 {
-//                        withAnimation {
-//                            showSuggestions = true
-//                        }
-//                    } else {
-//                        withAnimation {
-//                            showSuggestions = false
-//                        }
-//                    }
-//
-//            }
-
+            
+        } .zIndex(3)
+            .onChange(of: searchService.suggestedItems.count) { newValue in
+                if newValue > 0 {
+                    withAnimation {
+                        showSuggestions = true
+                    }
+                } else {
+                    withAnimation {
+                        showSuggestions = false
+                    }
+                }
+            }
     }
+    
     func runSearch(_ suggestion:MKLocalSearchCompletion) {
         textObserver.overrideText(suggestion.id)
         searchService.clearSuggestions()
@@ -90,31 +95,10 @@ struct LocationSearchField: View {
         searchService.clearSuggestions()
     }
     
-    @ViewBuilder private var suggestionsOverlay: some View {
-        VStack(alignment: .leading) {
-            ForEach(searchService.suggestedItems.prefix(numberOfItems), id:\.self) { item in
-            
-                    Button(action: {
-                        shouldSuggest = false
-                        runSearch(item)
-                        
-                    }, label: {
-                        SuggestionItemRow(item: item).environmentObject(searchService)
-                    })
-                    Divider()
-                }
-            
-            }
-    }
+
     
     struct SuggestionItemRow: View {
-        @EnvironmentObject var infoService:LocationSearchService
         let item:MKLocalSearchCompletion
-        
-    //        Has no effect on layout issues
-    //        let charset = CharacterSet.alphanumerics.inverted
-    //            .trimmingCharacters(in: charset)
-        
         var body: some View {
         
                 VStack(alignment: .leading) {
@@ -124,29 +108,43 @@ struct LocationSearchField: View {
         }
     }
     
-    //Note the animation only worked on the rectangle when it was in teh ZStack, not in the background
-    //It does not appear to work on the VStack at all.
-    // .scaleEffect(x: 1, y:showSuggestions ? 1 : 0, anchor: .top)
-//    var menuAnimation: Animation {
-//        Animation.easeInOut(duration: 4)
-//    }
-//    
-//    struct ClipEffect: ViewModifier {
-//        var value: CGFloat
-//
-//        func body(content: Content) -> some View {
-//            content
-//                .clipShape(RoundedRectangle(cornerRadius: 100*(1-value)).scale(value))
-//        }
-//    }
-//
-//
-//        var clipTransition: AnyTransition {
-//            .modifier(
-//                active: ClipEffect(value: 0),
-//                identity: ClipEffect(value: 1)
-//            )
-//        }
+    var menuTransition:AnyTransition {
+        //AnyTransition.scale(scale: 2, anchor: UnitPoint(x: 1, y: 0))
+        AnyTransition.opacity.combined(with: .move(edge: .top)).combined(with: verticalClipTransition)
+    }
+    
+    struct VerticalClipEffect:ViewModifier {
+        var value: CGFloat
+        
+        func body(content: Content) -> some View {
+            content
+                .clipShape(Rectangle().scale(x: 1, y: value, anchor: .top))
+        }
+    }
+    
+    var verticalClipTransition:AnyTransition {
+        .modifier(
+            active: VerticalClipEffect(value: 0),
+            identity: VerticalClipEffect(value: 1)
+        )
+    }
+
+    
+    @ViewBuilder private var suggestionsList: some View {
+        VStack(alignment: .leading) {
+            ForEach(searchService.suggestedItems.prefix(numberOfItems), id:\.self) { item in
+                    Button(action: {
+                        shouldSuggest = false
+                        runSearch(item)
+
+                    }, label: {
+                        SuggestionItemRow(item: item)
+                    })
+                    Divider()
+                }
+
+            }
+    }
     
     
     enum StyleConstants {
