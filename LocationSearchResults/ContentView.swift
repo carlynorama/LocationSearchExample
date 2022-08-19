@@ -6,15 +6,22 @@
 //
 
 import SwiftUI
+import MapKit
 
 struct ContentView: View {
     @StateObject var searchService = LocationSearchService()
+    @State var location:MKMapItem = MKMapItem(placemark: MKPlacemark(coordinate: CLLocationCoordinate2D(latitude: 34.0536909, longitude: -118.242766)))
 
     var body: some View {
         TabView {
+
             LocationPickerExample()
                 .tabItem {
                     Label("Location Picker", systemImage: "globe")
+                }
+            LocationPickerChooserContent(location:$location)
+                .tabItem {
+                    Label("Chooser", systemImage: "globe")
                 }
             LocationSearchFieldExampleView()
                 .tabItem {

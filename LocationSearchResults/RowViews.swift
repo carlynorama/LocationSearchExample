@@ -9,16 +9,42 @@ import SwiftUI
 import MapKit
 
 
-struct MapItemRow: View {
+//struct MapItemRow: View {
+//    let item:MKMapItem
+//
+//    var body: some View {
+//        VStack {
+//            Text("\(item.name ?? "No name")")
+//            Text("placemark: \(item.placemark)").font(.caption)
+//        }
+//    }
+//}
+
+struct MapItemRow:View {
     let item:MKMapItem
     
     var body: some View {
-        VStack {
-            Text("\(item.name ?? "No name")")
-            Text("placemark: \(item.placemark)").font(.caption)
+        HStack {
+            VStack(alignment: .leading) {
+                Text(item.name ?? "No name provided")
+                Text(descriptionFromPlacemark(item.placemark))
+                HStack {
+                    Text("\(item.placemark.coordinate.latitude)" )
+                    Text("\(item.placemark.coordinate.longitude)" )
+                }
+            }
         }
     }
+        
+        func descriptionFromPlacemark(_ placemark:CLPlacemark) -> String {
+            let firstItem = placemark.locality //placemark.areasOfInterest?[0] ?? placemark.locality
+            let availableInfo:[String?] = [firstItem, placemark.administrativeArea, placemark.country]
+            let string = availableInfo.compactMap{ $0 }.joined(separator: ", ")
+            return string
+        }
 }
+
+
 
 struct CompletionItemRow: View {
     @EnvironmentObject var infoService:LocationSearchService
