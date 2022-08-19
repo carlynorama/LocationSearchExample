@@ -16,31 +16,59 @@ struct LocationPickerExample: View {
     
     var body: some View {
         Form {
-            LocationPicker(item: $mapItem)
+            LocationPicker(item: $mapItem, style: .searchOnly)
+            LocationPicker(item: $mapItem, style: .deviceLocation)
         }
     }
 }
 
+enum LocationPickerStyle {
+    case deviceLocation
+    case searchOnly
+}
+
+
 struct LocationPicker: View {
+    
     //@EnvironmentObject var searchService:LocationSearchService
     @StateObject var searchService:LocationSearchService = LocationSearchService()
     @Binding var item:MKMapItem
+    let style:LocationPickerStyle
     
     @State private var showingPopover = false
     
     var body: some View {
         VStack(alignment: .leading) {
             Text("Choose a location")
-            Button(
-                action: { showingPopover.toggle() },
-                label: {
-                    LocationPickerLabelLayout(item: $item)
-                }).buttonStyle(.bordered).foregroundColor(.secondary)
-                .popover(isPresented: $showingPopover) {
-                    LocationPickerChooserContent(location: $item).environmentObject(searchService)
+            
+            switch style {
+            case .deviceLocation:
+                HStack {
+                    Button(
+                        action: { showingPopover.toggle() },
+                        label: {
+                            LocationPickerLabelLayout(item: $item)
+                        }).buttonStyle(.bordered).foregroundColor(.secondary)
+                        .popover(isPresented: $showingPopover) {
+                            LocationPickerChooserContent(location: $item).environmentObject(searchService)
+                        }
+                    CurrentLocationButton(locationRequester: { print("go fetch location") })
+                    
                 }
+            case .searchOnly:
+                Button(
+                    action: { showingPopover.toggle() },
+                    label: {
+                        LocationPickerLabelLayout(item: $item)
+                    }).buttonStyle(.bordered).foregroundColor(.secondary)
+                    .popover(isPresented: $showingPopover) {
+                        LocationPickerChooserContent(location: $item).environmentObject(searchService)
+                    }
+            }
         }
     }
+    
+
 }
 
 struct LocationPickerLabelLayout:View {
@@ -151,7 +179,20 @@ struct LocationPickerChooserContent:View {
 }
 
 
-
+struct CurrentLocationButton: View {
+    let locationRequester:()->()
+    
+    var body: some View {
+        if #available(iOS 15.0, *) {
+            LocationButton(.currentLocation) {
+                locationRequester()
+            }.symbolVariant(.fill)
+                .labelStyle(.iconOnly)
+                .foregroundColor(Color.white)
+                .cornerRadius(20)
+        }
+    }
+}
 
 
 
