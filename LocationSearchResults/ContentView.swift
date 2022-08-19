@@ -19,7 +19,7 @@ struct ContentView: View {
                 .tabItem {
                     Label("Location Picker", systemImage: "globe")
                 }
-            LocationPickerChooserContent(location:$location)
+            LocationPickerChooserContent(location:$location, style: .searchWithSuggestedValues(items: [location]))
                 .tabItem {
                     Label("Chooser", systemImage: "globe")
                 }
