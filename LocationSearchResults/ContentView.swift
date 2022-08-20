@@ -7,6 +7,7 @@
 
 import SwiftUI
 import MapKit
+import LocationServices
 
 struct ContentView: View {
     @StateObject var searchService = LocationSearchService()
@@ -19,18 +20,18 @@ struct ContentView: View {
                 .tabItem {
                     Label("Location Picker", systemImage: "globe")
                 }
-            LocationPickerChooserContent(location:$location, style: .searchWithSuggestedValues(items: [location]))
-                .tabItem {
-                    Label("Chooser", systemImage: "globe")
-                }
-            LocationSearchFieldExampleView()
-                .tabItem {
-                    Label("Suggested Search", systemImage: "globe")
-                }
+//            LocationPickerChooserContent(location:$location, style: .searchWithSuggestedValues(items: [location]))
+//                .tabItem {
+//                    Label("Chooser", systemImage: "globe")
+//                }
+//            LocationSearchFieldExampleView()
+//                .tabItem {
+//                    Label("Suggested Search", systemImage: "globe")
+//                }
             SearchTestView()
                 //.badge(2)
                 .tabItem {
-                    Label("Search", systemImage: "globe")
+                    Label("Original Search", systemImage: "globe")
                 }
 
             SearchableFieldView()

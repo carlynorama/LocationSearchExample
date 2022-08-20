@@ -1,5 +1,6 @@
 import SwiftUI
 import MapKit
+import LocationServices
 
 struct SearchTestView: View {
     @EnvironmentObject var infoService:LocationSearchService

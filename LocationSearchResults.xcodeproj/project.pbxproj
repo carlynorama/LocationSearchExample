@@ -7,17 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		DA5CEDCE28A85A4E006EADE9 /* DebouncingTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA5CEDCD28A85A4E006EADE9 /* DebouncingTextField.swift */; };
-		DA68B1BC28A721FF007BE140 /* LocationSearchService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA68B1BB28A721FF007BE140 /* LocationSearchService.swift */; };
 		DA6A616128A86384003EAD0B /* AutoCompleteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA6A616028A86384003EAD0B /* AutoCompleteView.swift */; };
 		DA6A616328A8639A003EAD0B /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA6A616228A8639A003EAD0B /* ContentView.swift */; };
 		DA6A616528AADC8D003EAD0B /* SearchableFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA6A616428AADC8D003EAD0B /* SearchableFieldView.swift */; };
-		DA6A616728AAFD89003EAD0B /* RowViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA6A616628AAFD89003EAD0B /* RowViews.swift */; };
-		DA6A616928AAFE5C003EAD0B /* LocationSearchField.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA6A616828AAFE5C003EAD0B /* LocationSearchField.swift */; };
 		DA6A616D28AB122C003EAD0B /* LocationSearchFieldExampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA6A616C28AB122B003EAD0B /* LocationSearchFieldExampleView.swift */; };
+		DA8556E228B1679E000BD5CF /* LocationServices in Frameworks */ = {isa = PBXBuildFile; productRef = DA8556E128B1679E000BD5CF /* LocationServices */; };
 		DAB1236D28AC312A00749161 /* AlignmentTestsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAB1236C28AC312A00749161 /* AlignmentTestsView.swift */; };
 		DAB123B228AEE12700749161 /* LocationPickerExample.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAB123B128AEE12700749161 /* LocationPickerExample.swift */; };
-		DAB123B628AFED6C00749161 /* LocationPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAB123B528AFED6C00749161 /* LocationPicker.swift */; };
 		DAF107B428A715EB005DA02C /* LocationSearchResultsApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAF107B328A715EB005DA02C /* LocationSearchResultsApp.swift */; };
 		DAF107B628A715EB005DA02C /* SearchTestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAF107B528A715EB005DA02C /* SearchTestView.swift */; };
 		DAF107B828A715EE005DA02C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DAF107B728A715EE005DA02C /* Assets.xcassets */; };
@@ -45,18 +41,14 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		DA5CEDCD28A85A4E006EADE9 /* DebouncingTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebouncingTextField.swift; sourceTree = "<group>"; };
-		DA68B1BB28A721FF007BE140 /* LocationSearchService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationSearchService.swift; sourceTree = "<group>"; };
 		DA6A616028A86384003EAD0B /* AutoCompleteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutoCompleteView.swift; sourceTree = "<group>"; };
 		DA6A616228A8639A003EAD0B /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		DA6A616428AADC8D003EAD0B /* SearchableFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchableFieldView.swift; sourceTree = "<group>"; };
-		DA6A616628AAFD89003EAD0B /* RowViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RowViews.swift; sourceTree = "<group>"; };
-		DA6A616828AAFE5C003EAD0B /* LocationSearchField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationSearchField.swift; sourceTree = "<group>"; };
 		DA6A616C28AB122B003EAD0B /* LocationSearchFieldExampleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationSearchFieldExampleView.swift; sourceTree = "<group>"; };
 		DAB1236B28AC09BC00749161 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = LocationSearchResults/README.md; sourceTree = "<group>"; };
 		DAB1236C28AC312A00749161 /* AlignmentTestsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlignmentTestsView.swift; sourceTree = "<group>"; };
 		DAB123B128AEE12700749161 /* LocationPickerExample.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationPickerExample.swift; sourceTree = "<group>"; };
-		DAB123B528AFED6C00749161 /* LocationPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationPicker.swift; sourceTree = "<group>"; };
+		DAB123B728B039D000749161 /* LocationServices */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = LocationServices; path = ../LocationServices; sourceTree = "<group>"; };
 		DAF107B028A715EB005DA02C /* LocationSearchResults.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LocationSearchResults.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DAF107B328A715EB005DA02C /* LocationSearchResultsApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationSearchResultsApp.swift; sourceTree = "<group>"; };
 		DAF107B528A715EB005DA02C /* SearchTestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTestView.swift; sourceTree = "<group>"; };
@@ -74,6 +66,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DA8556E228B1679E000BD5CF /* LocationServices in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -94,17 +87,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		DAB123B328AFED2800749161 /* ComponentViews */ = {
-			isa = PBXGroup;
-			children = (
-				DAB123B528AFED6C00749161 /* LocationPicker.swift */,
-				DA6A616628AAFD89003EAD0B /* RowViews.swift */,
-				DA5CEDCD28A85A4E006EADE9 /* DebouncingTextField.swift */,
-				DA6A616828AAFE5C003EAD0B /* LocationSearchField.swift */,
-			);
-			path = ComponentViews;
-			sourceTree = "<group>";
-		};
 		DAB123B428AFED4700749161 /* TabLayouts */ = {
 			isa = PBXGroup;
 			children = (
@@ -117,14 +99,23 @@
 			path = TabLayouts;
 			sourceTree = "<group>";
 		};
+		DAB123B828B03CCE00749161 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		DAF107A728A715EB005DA02C = {
 			isa = PBXGroup;
 			children = (
+				DAB123B728B039D000749161 /* LocationServices */,
 				DAB1236B28AC09BC00749161 /* README.md */,
 				DAF107B228A715EB005DA02C /* LocationSearchResults */,
 				DAF107C328A715EE005DA02C /* LocationSearchResultsTests */,
 				DAF107CD28A715EE005DA02C /* LocationSearchResultsUITests */,
 				DAF107B128A715EB005DA02C /* Products */,
+				DAB123B828B03CCE00749161 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -143,10 +134,8 @@
 			children = (
 				DAF107B328A715EB005DA02C /* LocationSearchResultsApp.swift */,
 				DAB123B428AFED4700749161 /* TabLayouts */,
-				DAB123B328AFED2800749161 /* ComponentViews */,
 				DA6A616228A8639A003EAD0B /* ContentView.swift */,
 				DAB1236C28AC312A00749161 /* AlignmentTestsView.swift */,
-				DA68B1BB28A721FF007BE140 /* LocationSearchService.swift */,
 				DAF107B728A715EE005DA02C /* Assets.xcassets */,
 				DAF107B928A715EE005DA02C /* Preview Content */,
 			);
@@ -194,6 +183,9 @@
 			dependencies = (
 			);
 			name = LocationSearchResults;
+			packageProductDependencies = (
+				DA8556E128B1679E000BD5CF /* LocationServices */,
+			);
 			productName = LocationSearchResults;
 			productReference = DAF107B028A715EB005DA02C /* LocationSearchResults.app */;
 			productType = "com.apple.product-type.application";
@@ -314,13 +306,8 @@
 				DA6A616528AADC8D003EAD0B /* SearchableFieldView.swift in Sources */,
 				DAB1236D28AC312A00749161 /* AlignmentTestsView.swift in Sources */,
 				DAB123B228AEE12700749161 /* LocationPickerExample.swift in Sources */,
-				DAB123B628AFED6C00749161 /* LocationPicker.swift in Sources */,
 				DA6A616D28AB122C003EAD0B /* LocationSearchFieldExampleView.swift in Sources */,
-				DA6A616728AAFD89003EAD0B /* RowViews.swift in Sources */,
 				DAF107B428A715EB005DA02C /* LocationSearchResultsApp.swift in Sources */,
-				DA5CEDCE28A85A4E006EADE9 /* DebouncingTextField.swift in Sources */,
-				DA68B1BC28A721FF007BE140 /* LocationSearchService.swift in Sources */,
-				DA6A616928AAFE5C003EAD0B /* LocationSearchField.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -481,6 +468,7 @@
 				DEVELOPMENT_ASSET_PATHS = "\"LocationSearchResults/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSLocationUsageDescription = "Uses location when asked to update location.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -509,6 +497,7 @@
 				DEVELOPMENT_ASSET_PATHS = "\"LocationSearchResults/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSLocationUsageDescription = "Uses location when asked to update location.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -639,6 +628,13 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		DA8556E128B1679E000BD5CF /* LocationServices */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = LocationServices;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = DAF107A828A715EB005DA02C /* Project object */;
 }

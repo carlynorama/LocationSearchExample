@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import LocationServices
 
 struct LocationSearchFieldExampleView: View {
     @EnvironmentObject var infoService:LocationSearchService
